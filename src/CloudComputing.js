@@ -160,7 +160,199 @@ const CloudComputingComponent = () => {
         { avatar: "/api/placeholder/32/32", username: "costoptimizer", text: "The flexibility in pricing is amazing!" },
         { avatar: "/api/placeholder/32/32", username: "startup_cto", text: "Perfect for startups!" }
       ]
-    }
+    },
+    {
+      id: 1,
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR12nPY60wXMYF9CwroNFdR7NyWvlXeBYFZMA&s',
+      description: 'Cloud computing enables businesses to scale their infrastructure dynamically, reducing costs and improving efficiency.',
+      likes: 42,
+      dislikes: 8,
+      isBookmarked: false,
+      comments: [
+        { avatar: "/api/placeholder/32/32", username: "clouduser1", text: "Completely agree! Scalability is crucial." },
+        { avatar: "/api/placeholder/32/32", username: "techpro", text: "This has transformed our business." }
+      ]
+    },
+    {
+      id: 2,
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZ6P4VDTt7diLyhl964AN8rwiF7bxMfExecQ&s',
+      description: 'Security in the cloud has evolved significantly, with providers offering advanced features like encryption and access controls.',
+      likes: 35,
+      dislikes: 5,
+      isBookmarked: false,
+      comments: [
+        { avatar: "/api/placeholder/32/32", username: "securityexpert", text: "Great overview of cloud security!" },
+        { avatar: "/api/placeholder/32/32", username: "cloudarch", text: "Security is indeed paramount." }
+      ]
+    },
+    {
+      id: 1,
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGy-dUm2G-vfdo0wKmseNsDUqKDFtb8CBZ4Q&s',
+      description: 'Cloud computing enables businesses to scale their infrastructure dynamically, reducing costs and improving efficiency.',
+      likes: 42,
+      dislikes: 8,
+      isBookmarked: false,
+      comments: [
+        { avatar: "/api/placeholder/32/32", username: "clouduser1", text: "Completely agree! Scalability is crucial." },
+        { avatar: "/api/placeholder/32/32", username: "techpro", text: "This has transformed our business." }
+      ]
+    },
+    {
+      id: 2,
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgOo66RPeFndWpsdYZNUuHe83BTzMb2aj4GQ&s',
+      description: 'Security in the cloud has evolved significantly, with providers offering advanced features like encryption and access controls.',
+      likes: 35,
+      dislikes: 5,
+      isBookmarked: false,
+      comments: [
+        { avatar: "/api/placeholder/32/32", username: "securityexpert", text: "Great overview of cloud security!" },
+        { avatar: "/api/placeholder/32/32", username: "cloudarch", text: "Security is indeed paramount." }
+      ]
+    },
+    {
+      id: 1,
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSq0fQimqMdvJwceR9F5XJnPtK5emDc0KzOgA&s',
+      description: 'Cloud computing enables businesses to scale their infrastructure dynamically, reducing costs and improving efficiency.',
+      likes: 42,
+      dislikes: 8,
+      isBookmarked: false,
+      comments: [
+        { avatar: "/api/placeholder/32/32", username: "clouduser1", text: "Completely agree! Scalability is crucial." },
+        { avatar: "/api/placeholder/32/32", username: "techpro", text: "This has transformed our business." }
+      ]
+    },
+    {
+      id: 2,
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRo540tWfl6mcUQDiH1-EfuY1uYq0doElzLFw&s',
+      description: 'Security in the cloud has evolved significantly, with providers offering advanced features like encryption and access controls.',
+      likes: 35,
+      dislikes: 5,
+      isBookmarked: false,
+      comments: [
+        { avatar: "/api/placeholder/32/32", username: "securityexpert", text: "Great overview of cloud security!" },
+        { avatar: "/api/placeholder/32/32", username: "cloudarch", text: "Security is indeed paramount." }
+      ]
+    },
+    {
+      id: 1,
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2dSJzxAk-z3_bzHB7axyZd_SJta7gb5kglQ&s',
+      description: 'Cloud computing enables businesses to scale their infrastructure dynamically, reducing costs and improving efficiency.',
+      likes: 42,
+      dislikes: 8,
+      isBookmarked: false,
+      comments: [
+        { avatar: "/api/placeholder/32/32", username: "clouduser1", text: "Completely agree! Scalability is crucial." },
+        { avatar: "/api/placeholder/32/32", username: "techpro", text: "This has transformed our business." }
+      ]
+    },
+    {
+      id: 2,
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDT1tgNSP5DC4ECLxSYZAZnBKixHtxCwwhvA&s',
+      description: 'Security in the cloud has evolved significantly, with providers offering advanced features like encryption and access controls.',
+      likes: 35,
+      dislikes: 5,
+      isBookmarked: false,
+      comments: [
+        { avatar: "/api/placeholder/32/32", username: "securityexpert", text: "Great overview of cloud security!" },
+        { avatar: "/api/placeholder/32/32", username: "cloudarch", text: "Security is indeed paramount." }
+      ]
+    },
+    {
+      id: 1,
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzhIL9hUYBycg5tUcAfq47bl4GUGtRTa8uUQ&s',
+      description: 'Cloud computing enables businesses to scale their infrastructure dynamically, reducing costs and improving efficiency.',
+      likes: 42,
+      dislikes: 8,
+      isBookmarked: false,
+      comments: [
+        { avatar: "/api/placeholder/32/32", username: "clouduser1", text: "Completely agree! Scalability is crucial." },
+        { avatar: "/api/placeholder/32/32", username: "techpro", text: "This has transformed our business." }
+      ]
+    },
+    {
+      id: 2,
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxwOIICakbzr6E2_vNgXXuYhPiLDvhWpio1g&s',
+      description: 'Security in the cloud has evolved significantly, with providers offering advanced features like encryption and access controls.',
+      likes: 35,
+      dislikes: 5,
+      isBookmarked: false,
+      comments: [
+        { avatar: "/api/placeholder/32/32", username: "securityexpert", text: "Great overview of cloud security!" },
+        { avatar: "/api/placeholder/32/32", username: "cloudarch", text: "Security is indeed paramount." }
+      ]
+    },
+    {
+      id: 1,
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfIrvJgQdYNszfdZbC9LQMXtbPfO4f5tC1qQ&s',
+      description: 'Cloud computing enables businesses to scale their infrastructure dynamically, reducing costs and improving efficiency.',
+      likes: 42,
+      dislikes: 8,
+      isBookmarked: false,
+      comments: [
+        { avatar: "/api/placeholder/32/32", username: "clouduser1", text: "Completely agree! Scalability is crucial." },
+        { avatar: "/api/placeholder/32/32", username: "techpro", text: "This has transformed our business." }
+      ]
+    },
+    {
+      id: 2,
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaaFIyYGOw-4W0uLTmqKgksw2KtkWkZ3XWXQ&s',
+      description: 'Security in the cloud has evolved significantly, with providers offering advanced features like encryption and access controls.',
+      likes: 35,
+      dislikes: 5,
+      isBookmarked: false,
+      comments: [
+        { avatar: "/api/placeholder/32/32", username: "securityexpert", text: "Great overview of cloud security!" },
+        { avatar: "/api/placeholder/32/32", username: "cloudarch", text: "Security is indeed paramount." }
+      ]
+    },
+    {
+      id: 1,
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDperMmErdIKZb7iOy9hM62rn5CUQF_rq7VQ&s',
+      description: 'Cloud computing enables businesses to scale their infrastructure dynamically, reducing costs and improving efficiency.',
+      likes: 42,
+      dislikes: 8,
+      isBookmarked: false,
+      comments: [
+        { avatar: "/api/placeholder/32/32", username: "clouduser1", text: "Completely agree! Scalability is crucial." },
+        { avatar: "/api/placeholder/32/32", username: "techpro", text: "This has transformed our business." }
+      ]
+    },
+    {
+      id: 2,
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR12nPY60wXMYF9CwroNFdR7NyWvlXeBYFZMA&s',
+      description: 'Security in the cloud has evolved significantly, with providers offering advanced features like encryption and access controls.',
+      likes: 35,
+      dislikes: 5,
+      isBookmarked: false,
+      comments: [
+        { avatar: "/api/placeholder/32/32", username: "securityexpert", text: "Great overview of cloud security!" },
+        { avatar: "/api/placeholder/32/32", username: "cloudarch", text: "Security is indeed paramount." }
+      ]
+    },
+    {
+      id: 1,
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZN7XUTinMiNHams1-Zv-SmPXwH8RTbSalFg&s',
+      description: 'Cloud computing enables businesses to scale their infrastructure dynamically, reducing costs and improving efficiency.',
+      likes: 42,
+      dislikes: 8,
+      isBookmarked: false,
+      comments: [
+        { avatar: "/api/placeholder/32/32", username: "clouduser1", text: "Completely agree! Scalability is crucial." },
+        { avatar: "/api/placeholder/32/32", username: "techpro", text: "This has transformed our business." }
+      ]
+    },
+    {
+      id: 2,
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVbI-KBDw-FiyPy4TpFnj2pFj-AKYhz4n3fg&s',
+      description: 'Security in the cloud has evolved significantly, with providers offering advanced features like encryption and access controls.',
+      likes: 35,
+      dislikes: 5,
+      isBookmarked: false,
+      comments: [
+        { avatar: "/api/placeholder/32/32", username: "securityexpert", text: "Great overview of cloud security!" },
+        { avatar: "/api/placeholder/32/32", username: "cloudarch", text: "Security is indeed paramount." }
+      ]
+    },
   ]);
 
   const handleCreatePost = (newPost) => {

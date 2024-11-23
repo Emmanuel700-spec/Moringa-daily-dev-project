@@ -1,23 +1,35 @@
 import React, { useEffect, useState } from "react";
 import "./TechWriterVideos.css";
 
-const TechWriterVideos = () => {
-  const [videos, setVideos] = useState([]);
-  const [editingVideo, setEditingVideo] = useState(null);
-  const [formData, setFormData] = useState({ title: "", description: "" });
+const TechWriterContents = () => {
+  const [contents, setContents] = useState([]);
+  const [editingContent, setEditingContent] = useState(null);
+  const [formData, setFormData] = useState({ title: "", description: "", contentType: "" });
+  const [selectedContentType, setSelectedContentType] = useState('videos'); // Default to videos
 
-  // Fetch videos from the backend
+  // Fetch content from the backend based on selected type
   useEffect(() => {
-    fetch("http://localhost:5000/videos") // Replace with your backend URL
-      .then((response) => response.json())
-      .then((data) => setVideos(data))
-      .catch((error) => console.error("Error fetching videos:", error));
-  }, []);
+    const fetchContents = async () => {
+      try {
+        const response = await fetch(`http://localhost:5000/${selectedContentType}`);
+        const data = await response.json();
+        setContents(data);
+      } catch (error) {
+        console.error("Error fetching content:", error);
+      }
+    };
+    fetchContents();
+  }, [selectedContentType]);
+
+  // Handle content type selection
+  const handleContentTypeChange = (type) => {
+    setSelectedContentType(type);
+  };
 
   // Handle click on the pen icon to edit
-  const handleEditClick = (video) => {
-    setEditingVideo(video.id); // Set the current video ID for editing
-    setFormData({ title: video.title, description: video.description }); // Pre-fill form
+  const handleEditClick = (content) => {
+    setEditingContent(content.id); // Set the current content ID for editing
+    setFormData({ title: content.title, description: content.description, contentType: selectedContentType }); // Pre-fill form
   };
 
   // Handle form input changes
@@ -29,50 +41,65 @@ const TechWriterVideos = () => {
   // Handle form submission
   const handleFormSubmit = (e) => {
     e.preventDefault();
-
-    fetch(`http://localhost:5000/videos/${editingVideo}`, {
-      method: "PUT", // Update video details
+    fetch(`http://localhost:5000/${formData.contentType}/${editingContent}`, {
+      method: "PUT", // Update content details
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData),
     })
       .then((response) => response.json())
-      .then((updatedVideo) => {
-        // Update the video in the local state
-        setVideos((prevVideos) =>
-          prevVideos.map((video) =>
-            video.id === editingVideo ? updatedVideo : video
+      .then((updatedContent) => {
+        // Update the content in the local state
+        setContents((prevContents) =>
+          prevContents.map((content) =>
+            content.id === editingContent ? updatedContent : content
           )
         );
-        setEditingVideo(null); // Close the editing form
+        setEditingContent(null); // Close the editing form
       })
-      .catch((error) => console.error("Error updating video:", error));
+      .catch((error) => console.error("Error updating content:", error));
   };
 
   return (
-    <div className="video-container">
-      {videos.map((video) => (
-        <div className="video-card" key={video.id}>
-          <iframe
-            src={`https://www.youtube.com/embed/${video.videoId}`}
-            title={video.title}
-            className="video-iframe"
-          ></iframe>
-          <div className="video-details">
-            <h3>{video.title}</h3>
-            <p>{video.description}</p>
-            <button
-              className="edit-button"
-              onClick={() => handleEditClick(video)}
-            >
-              ✏️ Edit
-            </button>
-          </div>
-        </div>
-      ))}
+    <div className="content-container">
+      {/* Content Type Selection */}
+      <div className="content-type-selector">
+        <button onClick={() => handleContentTypeChange('videos')}>Videos</button>
+        <button onClick={() => handleContentTypeChange('posts')}>Posts</button>
+        <button onClick={() => handleContentTypeChange('audios')}>Audios</button>
+      </div>
 
-      {editingVideo && (
+      {/* Display Contents in a Grid */}
+      <div className="content-grid">
+        {contents.map((content) => (
+          <div className="content-card" key={content.id}>
+            {selectedContentType === 'videos' && (
+              <iframe
+                src={`https://www.youtube.com/embed/${content.videoId}`}
+                title={content.title}
+                className="content-iframe"
+              ></iframe>
+            )}
+            {selectedContentType === 'audios' && (
+              <audio controls>
+                <source src={content.audioUrl} type="audio/mp3" />
+                Your browser does not support the audio element.
+              </audio>
+            )}
+            <div className="content-details">
+              <h3>{content.title}</h3>
+              <p>{content.description}</p>
+              <button className="edit-button" onClick={() => handleEditClick(content)}>
+                ✏️ Edit
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Edit Form */}
+      {editingContent && (
         <div className="edit-form-container">
-          <h2>Edit Video</h2>
+          <h2>Edit Content</h2>
           <form onSubmit={handleFormSubmit}>
             <label>
               Title:
@@ -94,7 +121,7 @@ const TechWriterVideos = () => {
             <button type="submit">Save</button>
             <button
               type="button"
-              onClick={() => setEditingVideo(null)}
+              onClick={() => setEditingContent(null)}
               className="cancel-button"
             >
               Cancel
@@ -106,4 +133,4 @@ const TechWriterVideos = () => {
   );
 };
 
-export default TechWriterVideos;
+export default TechWriterContents;

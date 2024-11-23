@@ -127,7 +127,7 @@ const BackendComponent = () => {
   const [posts, setPosts] = useState([
     {
       id: 1,
-      image: 'data:image/png;base64,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',
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR12nPY60wXMYF9CwroNFdR7NyWvlXeBYFZMA&s',
       description: 'Backend development handles the server-side operations of an application, including logic, database connections, and authentication.',
       likes: 42,
       dislikes: 8,
@@ -160,7 +160,103 @@ const BackendComponent = () => {
         { avatar: "/api/placeholder/32/32", username: "gjkdklgi", text: "Very informative!" },
         { avatar: "/api/placeholder/32/32", username: "lgjdlfljhkjhuy", text: "Great post!" }
       ]
-    }
+    },
+    {
+      id: 1,
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhaSqfkcxaJeAF86_mTpufti5cltYgSZaYaQ&s',
+      description: 'Backend development handles the server-side operations of an application, including logic, database connections, and authentication.',
+      likes: 42,
+      dislikes: 8,
+      isBookmarked: false,
+      comments: [
+        { avatar: "/api/placeholder/32/32", username: "hwduidfgeruatjhvjknm", text: "Great insights!" },
+        { avatar: "/api/placeholder/32/32", username: "edgfjhnhjfjg", text: "Very helpful." }
+      ]
+    },
+    {
+      id: 1,
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTprjIdIMe7zKANsVvfOVpo4MED8bpuB-D_0g&s',
+      description: 'Backend development handles the server-side operations of an application, including logic, database connections, and authentication.',
+      likes: 42,
+      dislikes: 8,
+      isBookmarked: false,
+      comments: [
+        { avatar: "/api/placeholder/32/32", username: "hwduidfgeruatjhvjknm", text: "Great insights!" },
+        { avatar: "/api/placeholder/32/32", username: "edgfjhnhjfjg", text: "Very helpful." }
+      ]
+    },
+    {
+      id: 1,
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuTgTpnKRPCsVLK95UC5IbDz2pr2jYQmCoiA&s',
+      description: 'Backend development handles the server-side operations of an application, including logic, database connections, and authentication.',
+      likes: 42,
+      dislikes: 8,
+      isBookmarked: false,
+      comments: [
+        { avatar: "/api/placeholder/32/32", username: "hwduidfgeruatjhvjknm", text: "Great insights!" },
+        { avatar: "/api/placeholder/32/32", username: "edgfjhnhjfjg", text: "Very helpful." }
+      ]
+    },
+    {
+      id: 1,
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwVwUNTSyDDJOfactZ_ksijfg80KFPKoS5vA&s',
+      description: 'Backend development handles the server-side operations of an application, including logic, database connections, and authentication.',
+      likes: 42,
+      dislikes: 8,
+      isBookmarked: false,
+      comments: [
+        { avatar: "/api/placeholder/32/32", username: "hwduidfgeruatjhvjknm", text: "Great insights!" },
+        { avatar: "/api/placeholder/32/32", username: "edgfjhnhjfjg", text: "Very helpful." }
+      ]
+    },
+    {
+      id: 1,
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5nfj8g2X-9_CxsKtfddUOexjUBN10WucCNg&s',
+      description: 'Backend development handles the server-side operations of an application, including logic, database connections, and authentication.',
+      likes: 42,
+      dislikes: 8,
+      isBookmarked: false,
+      comments: [
+        { avatar: "/api/placeholder/32/32", username: "hwduidfgeruatjhvjknm", text: "Great insights!" },
+        { avatar: "/api/placeholder/32/32", username: "edgfjhnhjfjg", text: "Very helpful." }
+      ]
+    },
+    {
+      id: 1,
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSyECd5krwmWdMalrGQEMiqDT_5qdChtQpgw&s',
+      description: 'Backend development handles the server-side operations of an application, including logic, database connections, and authentication.',
+      likes: 42,
+      dislikes: 8,
+      isBookmarked: false,
+      comments: [
+        { avatar: "/api/placeholder/32/32", username: "hwduidfgeruatjhvjknm", text: "Great insights!" },
+        { avatar: "/api/placeholder/32/32", username: "edgfjhnhjfjg", text: "Very helpful." }
+      ]
+    },
+    {
+      id: 1,
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzhtcgZ4AS0KGy2xlwjl6GsX-wcNcjqobXBQ&s',
+      description: 'Backend development handles the server-side operations of an application, including logic, database connections, and authentication.',
+      likes: 42,
+      dislikes: 8,
+      isBookmarked: false,
+      comments: [
+        { avatar: "/api/placeholder/32/32", username: "hwduidfgeruatjhvjknm", text: "Great insights!" },
+        { avatar: "/api/placeholder/32/32", username: "edgfjhnhjfjg", text: "Very helpful." }
+      ]
+    },
+    {
+      id: 1,
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-E_9VJ6xFq1olzYKkLy1P40eoy_vc6OHeVw&s',
+      description: 'Backend development handles the server-side operations of an application, including logic, database connections, and authentication.',
+      likes: 42,
+      dislikes: 8,
+      isBookmarked: false,
+      comments: [
+        { avatar: "/api/placeholder/32/32", username: "hwduidfgeruatjhvjknm", text: "Great insights!" },
+        { avatar: "/api/placeholder/32/32", username: "edgfjhnhjfjg", text: "Very helpful." }
+      ]
+    },
   ]);
 
   const handleCreatePost = (newPost) => {

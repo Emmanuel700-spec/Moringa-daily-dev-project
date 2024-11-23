@@ -17,9 +17,6 @@ body {
   justify-content: center;
   padding: 3rem;
   background-color: #f7f0c3;
-  background-image: 
-    url('https://img.freepik.com/free-photo/multi-colored-psychedelic-background_23-2148805290.jpg?t=st=1731414796~exp=1731418396~hmac=1dc9e2daadcc02cfa6e38abdc2f015349d3a5609f4ad27af46693a8f8d909944&w=740'),
-    url('https://img.freepik.com/free-photo/multi-colored-psychedelic-background_23-2148805290.jpg?t=st=1731414796~exp=1731418396~hmac=1dc9e2daadcc02cfa6e38abdc2f015349d3a5609f4ad27af46693a8f8d909944&w=740'); /* Two images for opposite corners */
   background-size: 30%;  /* Control size of the image */
   background-position: top left, bottom right;  /* Place one image at top-left, the other at bottom-right */
   background-repeat: no-repeat;  /* Prevent repeating of the background image */

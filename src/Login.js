@@ -115,7 +115,7 @@ const Login = () => {
 
     try {
       // Fetch all users from the db.json
-      const response = await fetch('https://moringadailydev.onrender.com/auth/login');
+      const response = await fetch('http://localhost:5000/users');
       const users = await response.json();
 
       // Find the user with matching email and password

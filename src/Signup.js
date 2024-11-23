@@ -26,7 +26,7 @@ const Signup = () => {
 
     try {
       // Updated API endpoint
-      const response = await fetch('https://moringadailydev.onrender.com/auth/signup', {
+      const response = await fetch('http://localhost:5000/users', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -95,7 +95,6 @@ const Signup = () => {
               onChange={(e) => setRole(e.target.value)}
               required
             >
-              <option value="techwriter">Tech Writer</option>
               <option value="user">User</option>
             </select>
           </div>

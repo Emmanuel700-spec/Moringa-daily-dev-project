@@ -11,9 +11,10 @@ const CreateContent = () => {
     category: 'DevOps', // Default category
   });
 
-  // State to manage form submission loading and error messages
+  // State to manage form submission loading, error messages, and success messages
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -32,8 +33,9 @@ const CreateContent = () => {
       return;
     }
 
-    setIsSubmitting(true);  // Start loading
-    setErrorMessage('');  // Clear error message
+    setIsSubmitting(true); // Start loading
+    setErrorMessage(''); // Clear error message
+    setSuccessMessage(''); // Clear success message
 
     // Send the data to your backend (JSON Server in this case)
     fetch('http://localhost:5000/contents', {
@@ -50,10 +52,10 @@ const CreateContent = () => {
         return response.json();
       })
       .then((data) => {
-        alert('Content created successfully!');
+        // Show success message and reset the form
+        setSuccessMessage('Content created successfully on Moringa School Daily Dev!');
         console.log('Content created:', data);
 
-        // Reset form after successful submission
         setContent({
           type: '',
           title: '',
@@ -66,7 +68,7 @@ const CreateContent = () => {
         setErrorMessage('Error creating content: ' + error.message);
       })
       .finally(() => {
-        setIsSubmitting(false);  // End loading
+        setIsSubmitting(false); // End loading
       });
   };
 
@@ -75,6 +77,7 @@ const CreateContent = () => {
       <h1>Create New Content</h1>
       <form onSubmit={handleSubmit}>
         {errorMessage && <div className="error-message">{errorMessage}</div>}
+        {successMessage && <div className="success-message">{successMessage}</div>}
 
         <div className="form-group">
           <label htmlFor="type">Content Type</label>
@@ -149,3 +152,4 @@ const CreateContent = () => {
 };
 
 export default CreateContent;
+

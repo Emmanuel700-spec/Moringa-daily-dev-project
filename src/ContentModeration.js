@@ -1,131 +1,135 @@
 import React, { useState, useEffect } from 'react';
-import './ContentModeration.css';
+import './ContentModeration.css'; // Ensure professional styling
 
-// Fetch content from the correct API endpoint
-const fetchContent = async (contentType) => {
-  const response = await fetch(`http://localhost:5000/${contentType}`);
+const fetchContent = async (endpoint) => {
+  const response = await fetch(`http://localhost:5000/${endpoint}`);
   const data = await response.json();
   return data;
 };
 
 const ContentModeration = () => {
-  const [contentType, setContentType] = useState('posts'); // Default to 'posts'
+  const [contentType, setContentType] = useState('all'); // Default to all content
   const [content, setContent] = useState([]);
+  const [users, setUsers] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedContent, setSelectedContent] = useState(null);
+  const [selectedItem, setSelectedItem] = useState(null);
 
+  // Fetching content and users
   useEffect(() => {
-    // Fetch the content when the component mounts or contentType changes
     const getContent = async () => {
-      const data = await fetchContent(contentType);
+      let data;
+      if (contentType === 'all') {
+        // Fetch content from all relevant endpoints
+        const contents = await fetchContent('contents');
+        const posts = await fetchContent('posts');
+        const videos = await fetchContent('videos');
+        const audios = await fetchContent('audios');
+        data = [...contents, ...posts, ...videos, ...audios]; // Combine all data
+      } else {
+        // Fetch based on selected content type
+        data = await fetchContent(contentType);
+      }
       setContent(data);
     };
 
+    const getUsers = async () => {
+      const data = await fetchContent('users');
+      setUsers(data);
+    };
+
     getContent();
-  }, [contentType]); // Fetch content whenever contentType changes
+    getUsers();
+  }, [contentType]);
 
-  const handleApprove = (id) => {
-    const updatedContent = content.map(item =>
-      item.id === id ? { ...item, status: 'approved' } : item
+  // Approve content
+  const handleApprove = async (id) => {
+    await fetch(`http://localhost:5000/content/${id}/approve`, { method: 'POST' });
+    setContent((prev) =>
+      prev.map((item) => (item.id === id ? { ...item, status: 'approved' } : item))
     );
-    setContent(updatedContent);
   };
 
-  const handleFlag = (id) => {
-    const updatedContent = content.map(item =>
-      item.id === id ? { ...item, status: 'flagged' } : item
+  // Flag content
+  const handleFlag = async (id) => {
+    await fetch(`http://localhost:5000/content/${id}/flag`, { method: 'POST' });
+    setContent((prev) =>
+      prev.map((item) => (item.id === id ? { ...item, status: 'flagged' } : item))
     );
-    setContent(updatedContent);
   };
 
-  const handleDelete = (id) => {
-    const updatedContent = content.filter(item => item.id !== id);
-    setContent(updatedContent);
+  // Delete content
+  const handleDelete = async (id) => {
+    await fetch(`http://localhost:5000/content/${id}`, { method: 'DELETE' });
+    setContent((prev) => prev.filter((item) => item.id !== id));
   };
 
-  const handleContentTypeChange = (type) => {
-    setContentType(type);
+  // Deactivate user
+  const handleDeactivateUser = async (userId) => {
+    await fetch(`http://localhost:5000/users/${userId}/deactivate`, { method: 'PATCH' });
+    setUsers((prev) => prev.map((user) =>
+      user.id === userId ? { ...user, status: 'inactive' } : user
+    ));
   };
 
+  // Modal handlers
   const openModal = (item) => {
-    setSelectedContent(item);
+    setSelectedItem(item);
     setIsModalOpen(true);
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
-    setSelectedContent(null);
+    setSelectedItem(null);
   };
 
   return (
     <div className="content-moderation">
-      <h2>Content Moderation</h2>
-      <p>Review, flag, or approve content submitted by users.</p>
+      <header>
+        <h1>Manage Content</h1>
+      </header>
 
-      {/* Navbar for selecting content type */}
-      <div className="navbar">
-        <button onClick={() => handleContentTypeChange('posts')} className={`navbar-btn ${contentType === 'posts' ? 'active' : ''}`}>Posts</button>
-        <button onClick={() => handleContentTypeChange('videos')} className={`navbar-btn ${contentType === 'videos' ? 'active' : ''}`}>Videos</button>
-        <button onClick={() => handleContentTypeChange('audios')} className={`navbar-btn ${contentType === 'audios' ? 'active' : ''}`}>Audios</button>
+      <div className="dashboard">
+        <div className="stats">
+          <h2>Statistics</h2>
+          <div className="stat-cards">
+            <div className="card">Total Users: {users.length}</div>
+            <div className="card">Total Content: {content.length}</div>
+          </div>
+        </div>
+        <div className="filters">
+          <h2>Content Filters</h2>
+          <select onChange={(e) => setContentType(e.target.value)} value={contentType}>
+            <option value="all">All</option>
+            <option value="posts">Posts</option>
+            <option value="contents">Contents</option>
+            <option value="videos">Videos</option>
+            <option value="audios">Audios</option>
+          </select>
+        </div>
       </div>
 
       <div className="content-list">
-        {content.map(item => (
+        {content.map((item) => (
           <div key={item.id} className={`content-item ${item.status}`}>
-            <p><strong>User:</strong> {item.user}</p>
-            <p><strong>Content:</strong> {item.text}</p>
-            <p><strong>Status:</strong> <span className={`status-${item.status}`}>{item.status}</span></p>
-
-            {/* Display content type specific information */}
-            {item.type === 'video' && (
-              <div className="video-thumbnail" onClick={() => openModal(item)}>
-                <img src={`https://img.youtube.com/vi/${item.videoUrl.split('=')[1]}/0.jpg`} alt="Video thumbnail" />
-                <p>Click to view video</p>
-              </div>
-            )}
-            {item.type === 'audio' && (
-              <div className="audio-thumbnail" onClick={() => openModal(item)}>
-                <p>{item.text}</p>
-                <p>Click to listen</p>
-              </div>
-            )}
-            {item.type === 'post' && (
-              <p>{item.text}</p>
-            )}
-
+            <h3>{item.title}</h3>
+            {item.image && <img src={item.image} alt={item.title} />}
+            <p>{item.text || item.description}</p>
+            <p>Status: {item.status || 'pending'}</p>
             <div className="actions">
-              {item.status === 'pending' && (
-                <>
-                  <button onClick={() => handleApprove(item.id)} className="approve-btn">Approve</button>
-                  <button onClick={() => handleFlag(item.id)} className="flag-btn">Flag</button>
-                </>
-              )}
-              <button onClick={() => handleDelete(item.id)} className="delete-btn">Delete</button>
+              <button onClick={() => handleApprove(item.id)}>Approve</button>
+              <button onClick={() => handleFlag(item.id)}>Flag</button>
+              <button onClick={() => handleDelete(item.id)}>Delete</button>
             </div>
           </div>
         ))}
       </div>
 
-      {/* Modal for displaying selected content */}
-      {isModalOpen && selectedContent && (
+      {isModalOpen && (
         <div className="modal-overlay" onClick={closeModal}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            {selectedContent.type === 'video' && (
-              <div className="video-container">
-                <iframe width="560" height="315" src={selectedContent.videoUrl} title="Video player" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
-                <p><strong>Description:</strong> {selectedContent.text}</p>
-              </div>
-            )}
-            {selectedContent.type === 'audio' && (
-              <div className="audio-container">
-                <audio controls>
-                  <source src={selectedContent.audioUrl} type="audio/mp3" />
-                  Your browser does not support the audio element.
-                </audio>
-                <p><strong>Description:</strong> {selectedContent.text}</p>
-              </div>
-            )}
-            <button onClick={closeModal} className="close-btn">Close</button>
+          <div className="modal-content">
+            <h3>{selectedItem.title}</h3>
+            <p>{selectedItem.text || selectedItem.description}</p>
+            <button onClick={closeModal}>Close</button>
           </div>
         </div>
       )}

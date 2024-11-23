@@ -4,7 +4,7 @@
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: linear-gradient(135deg, #6e8efb, #a777e3);
+    background: linear-gradient(135deg, #6e8efb, #05cbf7);
     background-size: 400% 400%;
     animation: gradient-animation 10s ease infinite;
     font-family: 'Arial', sans-serif;
